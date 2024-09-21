@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased dark`}>
+      <body className={`${inter.variable} antialiased`}>
         <Header />
         <div className="flex">
           <Sidebar />

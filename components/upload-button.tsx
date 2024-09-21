@@ -4,7 +4,6 @@ import { CldUploadButton } from "next-cloudinary";
 import { Button } from "./ui/button";
 import { UploadIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import { UploadResult } from "@/app/page";
 
 export const UploadBtn = () => {
   const router = useRouter();
@@ -14,8 +13,7 @@ export const UploadBtn = () => {
       <Button asChild>
         <div className="flex gap-2">
           <CldUploadButton
-            onSuccess={(result: UploadResult) => {
-              // const uploadResult = result as UploadResult;
+            onSuccess={() => {
               console.log("refresh");
               setTimeout(() => {
                 router.refresh();

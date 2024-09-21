@@ -2,8 +2,10 @@ import React from "react";
 import { UploadBtn } from "@/components/upload-button";
 import { CloudinaryImage } from "@/components/cloudinary-image";
 import cloudinary from "cloudinary";
+import GalleryGrid from "./gallery-grid";
+import { SearchForm } from "./search-form";
 
-type SearchResult = {
+export type SearchResult = {
   public_id: string;
   tags: string[];
 };
@@ -17,7 +19,7 @@ export default async function GalleryPage({
     .expression(`resource_type:image${search ? ` AND tags=${search}` : ""}`)
     .sort_by("created_at", "desc")
     .with_field("tags")
-    .max_results(5)
+    .max_results(30)
     .execute()) as { resources: SearchResult[] };
 
   return (
@@ -27,18 +29,8 @@ export default async function GalleryPage({
         <UploadBtn />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {results.resources.map((result) => (
-          <CloudinaryImage
-            key={result.public_id}
-            src={result.public_id}
-            width="400"
-            height="300"
-            alt="cloudinary image"
-            className="rounded"
-          />
-        ))}
-      </div>
+      <SearchForm initialSearch={search} />
+      <GalleryGrid images={results.resources} />
     </div>
   );
 }
