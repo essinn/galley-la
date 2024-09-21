@@ -7,12 +7,12 @@ import Link from "next/link";
 export const Sidebar = () => {
   return (
     <div className="pb-12 w-1/5">
-      <div className="space-y-4 py-4">
-        <h2 className="mb-2 px-7 text-lg font-semibold tracking-tight">
+      <div className="space-y-4 py-5">
+        <h2 className="mb-2 px-8 text-lg font-semibold tracking-tight">
           Discover
         </h2>
-        <div className="px-3 py-2">
-          <div className="space-y-1">
+        <div className="px-8 py-2">
+          <div className="space-y-1 flex flex-col gap-1">
             <Link href="/gallery">
               <Button variant="secondary" className="w-full justify-start">
                 <ImageIcon className="mr-2 h-4 w-4" />

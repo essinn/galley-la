@@ -1,27 +1,44 @@
-"use client";
 import React from "react";
-import { CldUploadButton } from "next-cloudinary";
-import { UploadResult } from "../page";
-import { Button } from "@/components/ui/button";
-import { UploadIcon } from "@radix-ui/react-icons";
+import { UploadBtn } from "@/components/upload-button";
+import { CloudinaryImage } from "@/components/cloudinary-image";
+import cloudinary from "cloudinary";
 
-export default function GalleryPage() {
+type SearchResult = {
+  public_id: string;
+  tags: string[];
+};
+
+export default async function GalleryPage({
+  searchParams: { search },
+}: {
+  searchParams: { search: string };
+}) {
+  const results = (await cloudinary.v2.search
+    .expression(`resource_type:image${search ? ` AND tags=${search}` : ""}`)
+    .sort_by("created_at", "desc")
+    .with_field("tags")
+    .max_results(5)
+    .execute()) as { resources: SearchResult[] };
+
   return (
-    <div className="flex justify-between items-center">
-      <h1 className="text-2xl font-bold">Gallery</h1>
-      <Button asChild>
-        <div className="flex gap-2">
-          <CldUploadButton
-            // onSuccess={(result: UploadResult) => {
-            //   const uploadResult = result as UploadResult;
-            //   setImageId(uploadResult.info.public_id);
-            // }}
-            uploadPreset="ao5oa1et"
-            className=""
+    <div>
+      <div className="flex justify-between items-center pb-10">
+        <h1 className="text-2xl font-bold">Gallery</h1>
+        <UploadBtn />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {results.resources.map((result) => (
+          <CloudinaryImage
+            key={result.public_id}
+            src={result.public_id}
+            width="400"
+            height="300"
+            alt="cloudinary image"
+            className="rounded"
           />
-          <UploadIcon className="h-4 w-4" />
-        </div>
-      </Button>
+        ))}
+      </div>
     </div>
   );
 }
