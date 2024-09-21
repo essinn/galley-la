@@ -37,7 +37,7 @@ export const Sidebar = () => {
                 className="w-full flex items-center justify-start"
               >
                 <FolderIcon className="mr-2 h-4 w-4" />
-                Archive
+                Album
               </Button>
             </Link>
           </div>

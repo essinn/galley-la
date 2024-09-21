@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { SearchResult } from "@/app/gallery/page";
 import { SetAsFavorite } from "@/app/gallery/actions";
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
+import { ImageMenu } from "./image-menu";
 
 export function CloudinaryImage(
   props: {
@@ -32,7 +33,7 @@ export function CloudinaryImage(
               SetAsFavorite(imageData.public_id, false);
             });
           }}
-          className="absolute h-5 w-5 top-2 right-2 text-white hover:text-zinc-200 cursor-pointer"
+          className="absolute h-5 w-5 top-2 left-2 text-white hover:text-zinc-200 cursor-pointer"
         />
       ) : (
         <HeartIcon
@@ -42,10 +43,11 @@ export function CloudinaryImage(
               SetAsFavorite(imageData.public_id, true);
             });
           }}
-          className="absolute h-5 w-5 top-2 right-2 text-white hover:text-zinc-200 cursor-pointer"
+          className="absolute h-5 w-5 top-2 left-2 text-white hover:text-zinc-200 cursor-pointer"
         />
       )}
       {/* <ImageMenu image={imageData} /> */}
+      <ImageMenu />
     </div>
   );
 }
