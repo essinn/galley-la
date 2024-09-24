@@ -47,7 +47,7 @@ export function CloudinaryImage(
         />
       )}
       {/* <ImageMenu image={imageData} /> */}
-      <ImageMenu />
+      <ImageMenu image={imageData} />
     </div>
   );
 }

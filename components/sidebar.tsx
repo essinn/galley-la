@@ -8,10 +8,10 @@ export const Sidebar = () => {
   return (
     <div className="pb-12 w-1/5">
       <div className="space-y-4 py-5">
-        <h2 className="mb-2 px-8 text-lg font-semibold tracking-tight">
+        <h2 className="mb-2 px-8 text-2xl font-bold tracking-tight">
           Discover
         </h2>
-        <div className="px-8 py-2">
+        <div className="px-8 pt-[28px] py-2">
           <div className="space-y-1 flex flex-col gap-1">
             <Link href="/gallery">
               <Button
@@ -22,6 +22,15 @@ export const Sidebar = () => {
                 Gallery
               </Button>
             </Link>
+            <Link href="/albums">
+              <Button
+                variant="ghost"
+                className="w-full flex items-center justify-start"
+              >
+                <FolderIcon className="mr-2 h-4 w-4" />
+                Album
+              </Button>
+            </Link>
             <Link href="/favorites">
               <Button
                 variant="ghost"
@@ -29,15 +38,6 @@ export const Sidebar = () => {
               >
                 <HeartIcon className="mr-2 h-4 w-4" />
                 Favorites
-              </Button>
-            </Link>
-            <Link href="/archive">
-              <Button
-                variant="ghost"
-                className="w-full flex items-center justify-start"
-              >
-                <FolderIcon className="mr-2 h-4 w-4" />
-                Album
               </Button>
             </Link>
           </div>

@@ -1,5 +1,4 @@
-import { FolderIcon } from "lucide-react";
-
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +9,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { AddToAlbumDialog } from "./add-to-album-dialog";
+import { SearchResult } from "@/app/gallery/page";
+import { useState } from "react";
 
-export function ImageMenu(props: any) {
+export function ImageMenu({ image }: { image: SearchResult }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="absolute top-2 right-2">
@@ -21,9 +25,8 @@ export function ImageMenu(props: any) {
         <DropdownMenuLabel>Add to album</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <FolderIcon className="mr-2 h-4 w-4" />
-            <span>Add</span>
+          <DropdownMenuItem asChild>
+            <AddToAlbumDialog image={image} onClose={() => setOpen(false)} />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
